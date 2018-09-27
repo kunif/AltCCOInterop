@@ -24,9 +24,9 @@ POS for.NETには 既にLegacy COM Interopと呼ばれる、OPOSコントロー�
 これらを解決するために、以下の特徴を持つサービスオブジェクトを作成しました。
 
 - UnifiedPOSに定義された36種類のデバイスクラスをすべてサポートしました
-- OPOSのためのBinaryConversion処理は2種類に分けました
- - POS for.NETでもOPOSでもstringのプロパティ/パラメータは何も処理せずそのまま通します
- - POS for.NETでbyte[]やBitmap等のプロパティ/パラメータはBinaryConversionの値に応じた変換処理を行います
+- OPOSのためのBinaryConversion処理は2種類に分けました  
+  - POS for.NETでもOPOSでもstringのプロパティ/パラメータは何も処理せずそのまま通します
+  - POS for.NETでbyte[]やBitmap等のプロパティ/パラメータはBinaryConversionの値に応じた変換処理を行います
 - POS for.NETにおいてEnumとみなされているプロパティを読み取った際に、定義されていない値がOPOSから通知されたならば、PosControlExceptionを発生させ、その値を例外のErrorCodeExtendedプロパティに格納して通知します。
 - 対応するOPOSデバイス名の情報は、POS for.NETのConfiguration.xmlファイルにて定義します
 
@@ -64,8 +64,8 @@ POS for.NETには 既にLegacy COM Interopと呼ばれる、OPOSコントロー�
    例えば "AltCCOInterops"="C:\\\\POSforNET\\\\CCOInterop\\\\"  
    ただし、開発作業中はビルド時に処理の一環で自動的に登録されます。   
    対象キーの位置は以下です。  
- - 64bitOS: HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\POSfor.NET\\ControlAssemblies
- - 32bitOS: HKEY_LOCAL_MACHINE\\SOFTWARE\\POSfor.NET\\ControlAssemblies
+  - 64bitOS: HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\POSfor.NET\\ControlAssemblies
+  - 32bitOS: HKEY_LOCAL_MACHINE\\SOFTWARE\\POSfor.NET\\ControlAssemblies
 
 ## 設定
 
@@ -73,16 +73,16 @@ POS for.NETのposdm.exeプログラムを使用してデバイスエントリ作
 
 1. posdmのADDDEVICEコマンドでデバイスエントリを作成  
    使用例: posdm ADDDEVICE OposEVRW1 /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW"  
- - 指定したデバイス名(例では"OposEVRW1")は"HardwarePath"の値として格納されます  
-   他のPOS for.NETの名前やOPOSの名前と重ならないユニークな名前を指定してください  
- - /soname:には頭に"OpenPOS "を付けてダブルクォーテーションで囲んだデバイスクラス名を指定してください  
-   例えば "OpenPOS CashDrawer", "OpenPOS POSPrinter", "OpenPOS Scanner" 等  
+  - 指定したデバイス名(例では"OposEVRW1")は"HardwarePath"の値として格納されます  
+    他のPOS for.NETの名前やOPOSの名前と重ならないユニークな名前を指定してください  
+  - /soname:には頭に"OpenPOS "を付けてダブルクォーテーションで囲んだデバイスクラス名を指定してください  
+    例えば "OpenPOS CashDrawer", "OpenPOS POSPrinter", "OpenPOS Scanner" 等  
 
 
 2. posdmのADDPROPERTYコマンドで使用するOPOSデバイス名を設定  
    使用例: posdm ADDPROPERTY OposDeviceName VenderName_ModelName  /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW" /path:OposEVRW1  
- - 設定対象のプロパティ名は "OposDeviceName"  
- - 設定する値(例では"VenderName_ModelName")はOPOSレジストリに存在するデバイスネームキーまたは論理デバイス名を指定してください  
+  - 設定対象のプロパティ名は "OposDeviceName"  
+  - 設定する値(例では"VenderName_ModelName")はOPOSレジストリに存在するデバイスネームキーまたは論理デバイス名を指定してください  
 
 上記使用例実行後のConfiguration.xmlの対象デバイスエントリ
 
@@ -99,7 +99,7 @@ POS for.NETのposdm.exeプログラムを使用してデバイスエントリ作
 
 1. PosExplorerのGetDevicesメソッドにデバイスクラス名やDeviceCompatibilitiesを指定して呼び出し、該当デバイスクラスのデバイスコレクションを取得  
 2. 取得したデバイスコレクションの中で ServiceObjectName と HardwarePath が一致するDeviceInfoを検索し、それを基にCreateInstanceメソッドでオブジェクトを生成
-3.  イベントハンドラを登録
+3. イベントハンドラを登録
 4. Openメソッドを呼び出す
 
 コード例:
@@ -133,7 +133,7 @@ POS for.NETのposdm.exeプログラムを使用してデバイスエントリ作
 
 
 注) Compatibilityプロパティ(DeviceCompatibilities)の値は場合によって変わります。  
-　 DeviceCollection/DeviceInfoにリストされた状態ではCompatibilityLevel1、CreateInstanceで生成されたオブジェクトではOposとなります。  
+DeviceCollection/DeviceInfoにリストされた状態ではCompatibilityLevel1、CreateInstanceで生成されたオブジェクトではOposとなります。  
 
 ## 既知の課題   
 
