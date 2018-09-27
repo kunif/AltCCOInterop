@@ -34,23 +34,16 @@ POS for.NETには 既にLegacy COM Interopと呼ばれる、OPOSコントロー�
 
 このプログラムの開発および実行には以下が必要です。
 
-- Visual Studio 2017またはVisual Studio Community 2017 version 15.8.5 (開発のみ)
-- .NET framework 3.5および4.0以降
-- [Microsoft Point of Service for .NET v1.14.1 (POS for.NET)][P4.N]
-- [Common Control Objects 1.14.001][CCO]
-- [OPOS for .NET Assemblies 1.14.001][OPOS.NET]
+- Visual Studio 2017またはVisual Studio Community 2017 version 15.8.5 (開発のみ)  
+- .NET framework 3.5および4.0以降  
+- Microsoft Point of Service for .NET v1.14.1 (POS for.NET) : https://www.microsoft.com/en-us/download/details.aspx?id=55758  
+- Common Control Objects 1.14.001 : http://monroecs.com/oposccos_current.htm  
+- OPOS for .NET Assemblies 1.14.001 : http://monroecs.com/posfordotnet/opos_dotnet.htm  
 - 対象デバイスのOPOSサービスオブジェクト
 
-[P4.N]: https://www.microsoft.com/en-us/download/details.aspx?id=55758
-[CCO]: http://monroecs.com/oposccos_current.htm
-[OPOS.NET]: http://monroecs.com/posfordotnet/opos_dotnet.htm
-
-このサービスオブジェクトの開発/実行には、[Common Control Objects](CCO)と共に[OPOS for .NET Assemblies][OPOS.NET]が必要です。  
-デバイスベンダのOPOSで対象デバイスの.ocxしかインストールされない場合や、[CCO Runtimeの.zipファイル](CCOzip)を使ったインストールでは、OPOS for .NET Assembliesはインストールされないので、別途インストールしてください。  
-[CCO Installerの.msiファイル](CCOmsi)によるインストーラーでは両方ともインストールされます。そのため、こちらを使うことを推奨します。  
-
-[CCOzip]: http://www.monroecs.com/files/OposCCOs-1_14_001.zip
-[CCOmsi]: http://www.monroecs.com/files/OPOS_CCOs_1.14.001.msi
+このサービスオブジェクトの開発/実行には、Common Control Objectsと共にOPOS for .NET Assembliesが必要です。  
+デバイスベンダのOPOSで対象デバイスの.ocxしかインストールされない場合や、CCO Runtimeの.zipファイルを使ったインストールでは、OPOS for .NET Assembliesはインストールされないので、別途インストールしてください。  
+CCO Installerの.msiファイルによるインストーラーでは両方ともインストールされます。そのため、こちらを使うことを推奨します。  
 
 ## 実行環境へのインストール
 

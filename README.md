@@ -34,34 +34,27 @@ In order to solve these problems, i created a service object with the following 
 
 To develop and execute this program you need:
 
-- Visual Studio 2017 or Visual Studio Community 2017  version 15.8.5 (development only)
-- .NET framework 3.5 and 4.0 or later
-- [Microsoft Point of Service for .NET v1.14.1 (POS for.NET)](P4.N)
-- [Common Control Objects 1.14.001](CCO)
-- [OPOS for .NET Assemblies 1.14.001](OPOS.NET)
-- OPOS service object of target device
+- Visual Studio 2017 or Visual Studio Community 2017  version 15.8.5 (development only)  
+- .NET framework 3.5 and 4.0 or later  
+- Microsoft Point of Service for .NET v1.14.1 (POS for.NET) : https://www.microsoft.com/en-us/download/details.aspx?id=55758  
+- Common Control Objects 1.14.001 : http://monroecs.com/oposccos_current.htm  
+- OPOS for .NET Assemblies 1.14.001 : http://monroecs.com/posfordotnet/opos_dotnet.htm  
+- OPOS service object of target device  
 
-[P4.N]: https://www.microsoft.com/en-us/download/details.aspx?id=55758
-[CCO]: http://monroecs.com/oposccos_current.htm
-[OPOS.NET]: http://monroecs.com/posfordotnet/opos_dotnet.htm  
-
-To develop/execute this service object, [OPOS for .NET Assemblies](OPOS.NET) is required together with [Common Control Objects](CCO).  
-OPOS for.NET Assemblies is not installed when only the target device's .ocx is installed by the device vendor's OPOS, or installed using the [CCO Runtime .zip file](CCOzip), please install it separately.  
-Both are installed by the [CCO Installer .msi file](CCOmsi) installer.
+To develop/execute this service object, OPOS for .NET Assemblies is required together with Common Control Objects.  
+OPOS for.NET Assemblies is not installed when only the target device's .ocx is installed by the device vendor's OPOS, or installed using the CCO Runtime .zip file, please install it separately.  
+Both are installed by the CCO Installer .msi file installer.
 Therefore, i recommend using this.
-
-[CCOzip]: http://www.monroecs.com/files/OposCCOs-1_14_001.zip
-[CCOmsi]: http://www.monroecs.com/files/OPOS_CCOs_1.14.001.msi
 
 ## Installation on execution environment
 
 To install on the execution environment, please follow the procedure below.
 
 - Create an appropriate folder and copy POS.AltCCOInterop.dll.  
-  It is not the root of the drive, and the path name of the folder does not include the blank space and should consist only of alphanumeric characters under 0x7E.  
+  It is not the root of the drive, and the path name of the folder does not include the blank space and should consist only of alphanumeric characters less equal 0x7E.  
   There is less chance of that person having a problem.  
 - Register with the arbitrary name with the above folder as the value in the ControlAssemblies key of the POS for.NET registry.  
-  For example "AltCCOInterops"="C:\\POSforNET\\CCOInterop\\"  
+  For example "AltCCOInterops"="C:\\\\POSforNET\\\\CCOInterop\\\\"  
   However, during development work, it is automatically registered as part of the processing at build time.  
   The position of the target key is as follows.  
   - 64bitOS: HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\POSfor.NET\\ControlAssemblies  
