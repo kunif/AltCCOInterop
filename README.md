@@ -152,11 +152,12 @@ Currently known issues are as follows.
 If you want to customize for specific user/vendor specific processing etc, please do it freely.  
 However, in that case, please change all the following information to make it an independent file so that it can be used concurrently with this service object at the same time.  
 
-File name: POS.AltCCOInterop.dll  
-namespace: POS.AltCCOInterop  
-GUID: [assembly: Guid("d8eca985-8c8f-4968-8b67-5657246fa78e")]  
-Service object name: [ServiceObject(DeviceType.Xxxx, "OpenPOS Xxxx",  
-Class name: public class OpenPOSXxxx :  
+- File name: POS.AltCCOInterop.dll  
+- namespace: POS.AltCCOInterop  
+- GUID: [assembly: Guid("d8eca985-8c8f-4968-8b67-5657246fa78e")]  
+- Service object name: [ServiceObject(DeviceType.Xxxx, "OpenPOS Xxxx",  
+- Class name: public class OpenPOSXxxx :  
+
 Note) "Xxxx" in the above contains the device class name of UnifiedPOS/POS for.NET.
 
 It is good to reduce the amount of work to extract only the device you want to customize and create a new one.  

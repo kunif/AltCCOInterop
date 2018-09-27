@@ -149,11 +149,12 @@ DeviceCollection/DeviceInfoにリストされた状態では"CompatibilityLevel1
 もし特定ユーザー/ベンダー固有の処理等のためのカスタマイズを加えたい場合、それは自由に行ってください。  
 ただしその場合は、このサービスオブジェクトと同時に並行して使用しても問題無いように、以下の情報をすべて変更して独立したファイルにしてください。  
 
-ファイル名: POS.AltCCOInterop.dll  
-namespace: POS.AltCCOInterop  
-GUID: [assembly: Guid("d8eca985-8c8f-4968-8b67-5657246fa78e")]  
-サービスオブジェクト名: [ServiceObject(DeviceType.Xxxx, "OpenPOS Xxxx",  
-クラス名: public class OpenPOSXxxx :  
+- ファイル名: POS.AltCCOInterop.dll  
+- namespace: POS.AltCCOInterop  
+- GUID: [assembly: Guid("d8eca985-8c8f-4968-8b67-5657246fa78e")]  
+- サービスオブジェクト名: [ServiceObject(DeviceType.Xxxx, "OpenPOS Xxxx",  
+- クラス名: public class OpenPOSXxxx :  
+
 注) 上記のうち "Xxxx" はUnifiedPOS/POS for.NETのデバイスクラス名が入る  
 
 カスタマイズを行いたいデバイスだけを抜き出して新しく作るのが作業量も削減出来て良いでしょう。  
