@@ -129,6 +129,7 @@ POS for.NETのposdm.exeプログラムを使用してデバイスエントリ作
         evrwObj1.Open();
     }
 
+
 注) Compatibilityプロパティ(DeviceCompatibilities)の値は場合によって変わります。  
 　 DeviceCollection/DeviceInfoにリストされた状態ではCompatibilityLevel1、CreateInstanceで生成されたオブジェクトではOposとなります。  
 
