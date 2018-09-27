@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8ECA985-8C8F-4968-8B67-5657246FA78E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>POS.AltCCOInterop</RootNamespace>
+    <AssemblyName>POS.AltCCOInterop</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.PointOfService, Version=1.14.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Microsoft.PointOfService\v4.0_1.14.1.0__31bf3856ad364e35\Microsoft.PointOfService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSBelt, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSBelt\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSBelt.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSBillAcceptor, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSBillAcceptor\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSBillAcceptor.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSBillDispenser, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSBillDispenser\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSBillDispenser.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSBiometrics, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSBiometrics\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSBiometrics.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSBumpBar, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSBumpBar\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSBumpBar.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSCashChanger, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSCashChanger\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSCashChanger.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSCashDrawer, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSCashDrawer\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSCashDrawer.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSCAT, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSCAT\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSCAT.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSCheckScanner, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSCheckScanner\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSCheckScanner.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSCoinAcceptor, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSCoinAcceptor\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSCoinAcceptor.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSCoinDispenser, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSCoinDispenser\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSCoinDispenser.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSElectronicJournal, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSElectronicJournal\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSElectronicJournal.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSElectronicValueRW, Version=1.14.100.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSElectronicValueRW\1.14.100.0__25db91e28cd23c98\POS.Devices.OPOSElectronicValueRW.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSFiscalPrinter, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSFiscalPrinter\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSFiscalPrinter.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSGate, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSGate\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSGate.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSImageScanner, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSImageScanner\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSImageScanner.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSItemDispenser, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSItemDispenser\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSItemDispenser.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSKeylock, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSKeylock\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSKeylock.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSLights, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSLights\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSLights.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSLineDisplay, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSLineDisplay\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSLineDisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSMICR, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSMICR\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSMICR.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSMotionSensor, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSMotionSensor\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSMotionSensor.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSMSR, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSMSR\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSMSR.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSPINPad, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSPINPad\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSPINPad.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSPointCardRW, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSPointCardRW\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSPointCardRW.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSPOSKeyboard, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSPOSKeyboard\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSPOSKeyboard.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSPOSPower, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSPOSPower\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSPOSPower.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSPOSPrinter, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSPOSPrinter\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSPOSPrinter.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSRemoteOrderDisplay, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSRemoteOrderDisplay\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSRemoteOrderDisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSRFIDScanner, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSRFIDScanner\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSRFIDScanner.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSScale, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSScale\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSScale.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSScanner, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSScanner\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSScanner.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSSigCap, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSSigCap\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSSigCap.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSSmartCardRW, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSSmartCardRW\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSSmartCardRW.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSToneIndicator, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSToneIndicator\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSToneIndicator.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.OPOSTotals, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.OPOSTotals\1.14.0.0__25db91e28cd23c98\POS.Devices.OPOSTotals.dll</HintPath>
+    </Reference>
+    <Reference Include="POS.Devices.Opos_Constants, Version=1.14.0.0, Culture=neutral, PublicKeyToken=25db91e28cd23c98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\POS.Devices.Opos_Constants\1.14.0.0__25db91e28cd23c98\POS.Devices.Opos_Constants.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="InteropCommon.cs" />
+    <Compile Include="OpenPOSBelt.cs" />
+    <Compile Include="OpenPOSBillAcceptor.cs" />
+    <Compile Include="OpenPOSBillDispenser.cs" />
+    <Compile Include="OpenPOSBiometrics.cs" />
+    <Compile Include="OpenPOSBumpBar.cs" />
+    <Compile Include="OpenPOSCashChanger.cs" />
+    <Compile Include="OpenPOSCashDrawer.cs" />
+    <Compile Include="OpenPOSCAT.cs" />
+    <Compile Include="OpenPOSCheckScanner.cs" />
+    <Compile Include="OpenPOSCoinAcceptor.cs" />
+    <Compile Include="OpenPOSCoinDispenser.cs" />
+    <Compile Include="OpenPOSElectronicJournal.cs" />
+    <Compile Include="OpenPOSElectronicValueRW.cs" />
+    <Compile Include="OpenPOSFiscalPrinter.cs" />
+    <Compile Include="OpenPOSGate.cs" />
+    <Compile Include="OpenPOSHardTotals.cs" />
+    <Compile Include="OpenPOSImageScanner.cs" />
+    <Compile Include="OpenPOSItemDispenser.cs" />
+    <Compile Include="OpenPOSKeylock.cs" />
+    <Compile Include="OpenPOSLights.cs" />
+    <Compile Include="OpenPOSLineDisplay.cs" />
+    <Compile Include="OpenPOSMICR.cs" />
+    <Compile Include="OpenPOSMotionSensor.cs" />
+    <Compile Include="OpenPOSMSR.cs" />
+    <Compile Include="OpenPOSPINPad.cs" />
+    <Compile Include="OpenPOSPointCardRW.cs" />
+    <Compile Include="OpenPOSPOSKeyboard.cs" />
+    <Compile Include="OpenPOSPOSPower.cs" />
+    <Compile Include="OpenPOSPOSPrinter.cs" />
+    <Compile Include="OpenPOSRemoteOrderDisplay.cs" />
+    <Compile Include="OpenPOSRFIDScanner.cs" />
+    <Compile Include="OpenPOSScale.cs" />
+    <Compile Include="OpenPOSScanner.cs" />
+    <Compile Include="OpenPOSSignatureCapture.cs" />
+    <Compile Include="OpenPOSSmartCardRW.cs" />
+    <Compile Include="OpenPOSToneIndicator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>reg add HKLM\Software\POSfor.NET\ControlAssemblies /v AltCCOInterops /d "$(TargetDir)\"  /f /reg:32</PostBuildEvent>
+  </PropertyGroup>
+</Project>
