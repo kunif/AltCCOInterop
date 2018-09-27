@@ -57,13 +57,13 @@ Therefore, i recommend using this.
 
 To install on the execution environment, please follow the procedure below.
 
-1. Create an appropriate folder and copy POS.AltCCOInterop.dll.  
-   It is not the root of the drive, and the path name of the folder does not include the blank space and should consist only of alphanumeric characters under 0x7E.  
-   There is less chance of that person having a problem.  
-2. Register with the arbitrary name with the above folder as the value in the ControlAssemblies key of the POS for.NET registry.  
-   For example "AltCCOInterops"="C:\\POSforNET\\CCOInterop\\"  
-   However, during development work, it is automatically registered as part of the processing at build time.  
-   The position of the target key is as follows.  
+- Create an appropriate folder and copy POS.AltCCOInterop.dll.  
+  It is not the root of the drive, and the path name of the folder does not include the blank space and should consist only of alphanumeric characters under 0x7E.  
+  There is less chance of that person having a problem.  
+- Register with the arbitrary name with the above folder as the value in the ControlAssemblies key of the POS for.NET registry.  
+  For example "AltCCOInterops"="C:\\POSforNET\\CCOInterop\\"  
+  However, during development work, it is automatically registered as part of the processing at build time.  
+  The position of the target key is as follows.  
   - 64bitOS: HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\POSfor.NET\\ControlAssemblies  
   - 32bitOS: HKEY_LOCAL_MACHINE\\SOFTWARE\\POSfor.NET\\ControlAssemblies  
 
@@ -71,14 +71,14 @@ To install on the execution environment, please follow the procedure below.
 
 Create a device entry and set its properties using the posdm.exe program of POS for.NET.
 
-1. Create a device entry with the ADDDEVICE command of posdm  
-   Example usage: posdm ADDDEVICE OposEVRW1 /type:ElectronicValueRW /soname: "OpenPOS ElectronicValueRW"  
+- Create a device entry with the ADDDEVICE command of posdm  
+  Example usage: posdm ADDDEVICE OposEVRW1 /type:ElectronicValueRW /soname: "OpenPOS ElectronicValueRW"  
   - The specified device name ("OposEVRW1" in the example) is stored as the value of "HardwarePath"  
     Please specify a unique name that does not overlap the name of other POS for .NET or OPOS name.  
   - Please append "OpenPOS " to the head of /soname: and specify the device class name enclosed in double quotes.  
     For example, "OpenPOS CashDrawer", "OpenPOS POSPrinter", "OpenPOS Scanner" etc.  
-2. Set the OPOS device name to be used with the ADDPROPERTY command of posdm  
-   Example usage: posdm ADDPROPERTY OposDeviceName VenderName_ModelName /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW" /path:OposEVRW1  
+- Set the OPOS device name to be used with the ADDPROPERTY command of posdm  
+  Example usage: posdm ADDPROPERTY OposDeviceName VenderName_ModelName /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW" /path:OposEVRW1  
   - The property name to be set is "OposDeviceName".  
   - Please specify the device name key or logical device name that exists in the OPOS registry for the value to be set ("VenderName_ModelName" in the example).  
 
@@ -97,10 +97,10 @@ Target device entry in Configuration.xml after execution example:
 
 Here is a procedure and an example of calling the device entry created in the usage example of the above setting.
 
-1. Call PoExplorer's GetDevices method with the device class name and DeviceCompatibilities specified and get the device collection of the corresponding device class  
-2. Search for a DeviceInfo whose ServiceObjectName and HardwarePath match in the acquired device collection and generate an object with the CreateInstance method based on it  
-3. Register event handler  
-4. Call Open method  
+- Call PoExplorer's GetDevices method with the device class name and DeviceCompatibilities specified and get the device collection of the corresponding device class  
+- Search for a DeviceInfo whose ServiceObjectName and HardwarePath match in the acquired device collection and generate an object with the CreateInstance method based on it  
+- Register event handler  
+- Call Open method  
 
 Example code:
 
@@ -139,13 +139,13 @@ In the state listed in DeviceCollection/DeviceInfo, it is "CompatibilityLevel1",
 
 Currently known issues are as follows.
 
-1. Have not checked the operation using actual OPOS or device.  
-2. In particular, it is unknown whether the conversion of string (OPOS) and Bitmap etc (POS for.NET) of the following property/parameter/return value is correct.  
+- Have not checked the operation using actual OPOS or device.  
+- In particular, it is unknown whether the conversion of string (OPOS) and Bitmap etc (POS for.NET) of the following property/parameter/return value is correct.  
   - BiometricsInformationRecord(BIR) related property/parameter/return value of Biometrics device  
   - RawSensorData property of Biometrics device  
   - ImageData property of CheckScanner device  
   - FrameData property of ImageScanner device  
-3. There are no functions such as acquisition of operation record and information acquisition for troubleshooting.  
+- There are no functions such as acquisition of operation record and information acquisition for troubleshooting.  
 
 ## Customize
 

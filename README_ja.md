@@ -56,13 +56,13 @@ POS for.NETには 既にLegacy COM Interopと呼ばれる、OPOSコントロー�
 
 実行環境へのインストールは以下の手順で行ってください。
 
-1. 適当なフォルダを作成し、 POS.AltCCOInterop.dll をコピー  
-   ドライブのルートではなく、かつフォルダのパス名は空白を含まず、0x7E以下の英数字のみで構成してください。  
-   その方が問題発生の可能性が少ないでしょう。  
-2. POS for.NETレジストリのControlAssembliesキーに上記フォルダを値にして任意の名前で登録  
-   例えば "AltCCOInterops"="C:\\\\POSforNET\\\\CCOInterop\\\\"  
-   ただし、開発作業中はビルド時に処理の一環で自動的に登録されます。  
-   対象キーの位置は以下です。  
+- 適当なフォルダを作成し、 POS.AltCCOInterop.dll をコピー  
+  ドライブのルートではなく、かつフォルダのパス名は空白を含まず、0x7E以下の英数字のみで構成してください。  
+  その方が問題発生の可能性が少ないでしょう。  
+- POS for.NETレジストリのControlAssembliesキーに上記フォルダを値にして任意の名前で登録  
+  例えば "AltCCOInterops"="C:\\\\POSforNET\\\\CCOInterop\\\\"  
+  ただし、開発作業中はビルド時に処理の一環で自動的に登録されます。  
+  対象キーの位置は以下です。  
   - 64bitOS: HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\POSfor.NET\\ControlAssemblies  
   - 32bitOS: HKEY_LOCAL_MACHINE\\SOFTWARE\\POSfor.NET\\ControlAssemblies  
 
@@ -70,14 +70,14 @@ POS for.NETには 既にLegacy COM Interopと呼ばれる、OPOSコントロー�
 
 POS for.NETのposdm.exeプログラムを使用してデバイスエントリ作成およびプロパティ設定を行ってください。  
 
-1. posdmのADDDEVICEコマンドでデバイスエントリを作成  
-   使用例: posdm ADDDEVICE OposEVRW1 /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW"  
+- posdmのADDDEVICEコマンドでデバイスエントリを作成  
+  使用例: posdm ADDDEVICE OposEVRW1 /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW"  
   - 指定したデバイス名(例では"OposEVRW1")は"HardwarePath"の値として格納されます  
     他のPOS for.NETの名前やOPOSの名前と重ならないユニークな名前を指定してください  
   - /soname:には頭に"OpenPOS "を付けてダブルクォーテーションで囲んだデバイスクラス名を指定してください  
     例えば "OpenPOS CashDrawer", "OpenPOS POSPrinter", "OpenPOS Scanner" 等  
-2. posdmのADDPROPERTYコマンドで使用するOPOSデバイス名を設定  
-   使用例: posdm ADDPROPERTY OposDeviceName VenderName_ModelName /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW" /path:OposEVRW1  
+- posdmのADDPROPERTYコマンドで使用するOPOSデバイス名を設定  
+  使用例: posdm ADDPROPERTY OposDeviceName VenderName_ModelName /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW" /path:OposEVRW1  
   - 設定対象のプロパティ名は "OposDeviceName"  
   - 設定する値(例では"VenderName_ModelName")はOPOSレジストリに存在するデバイスネームキーまたは論理デバイス名を指定してください  
 
@@ -94,10 +94,10 @@ POS for.NETのposdm.exeプログラムを使用してデバイスエントリ作
 
 上記設定の使用例で作成したデバイスエントリを呼び出す手順と例を示します。
 
-1. PosExplorerのGetDevicesメソッドにデバイスクラス名やDeviceCompatibilitiesを指定して呼び出し、該当デバイスクラスのデバイスコレクションを取得  
-2. 取得したデバイスコレクションの中で ServiceObjectName と HardwarePath が一致するDeviceInfoを検索し、それを基にCreateInstanceメソッドでオブジェクトを生成  
-3. イベントハンドラを登録  
-4. Openメソッドを呼び出す  
+- PosExplorerのGetDevicesメソッドにデバイスクラス名やDeviceCompatibilitiesを指定して呼び出し、該当デバイスクラスのデバイスコレクションを取得  
+- 取得したデバイスコレクションの中で ServiceObjectName と HardwarePath が一致するDeviceInfoを検索し、それを基にCreateInstanceメソッドでオブジェクトを生成  
+- イベントハンドラを登録  
+- Openメソッドを呼び出す  
 
 コード例:
 
@@ -136,13 +136,13 @@ DeviceCollection/DeviceInfoにリストされた状態では"CompatibilityLevel1
 
 既知の課題は以下になります。
 
-1. 実際のOPOSやデバイスを使った動作確認は行っていません。  
-2. 特に以下のプロパティ/パラメータ/戻り値の、string(OPOS)とBitmap等(POS for.NET)との変換は正しいかどうか不明です。  
+- 実際のOPOSやデバイスを使った動作確認は行っていません。  
+- 特に以下のプロパティ/パラメータ/戻り値の、string(OPOS)とBitmap等(POS for.NET)との変換は正しいかどうか不明です。  
   - BiometricsデバイスのBiometricsInformationRecord(BIR)関連プロパティ/パラメータ/戻り値  
   - BiometricsデバイスのRawSensorDataプロパティ  
   - CheckScannerデバイスのImageDataプロパティ  
   - ImageScannerデバイスのFrameDataプロパティ  
-3. 動作記録採取や障害調査用情報取得などの機能がありません。  
+- 動作記録採取や障害調査用情報取得などの機能がありません。  
 
 ## カスタマイズ
 
