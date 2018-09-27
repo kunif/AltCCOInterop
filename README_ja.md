@@ -102,6 +102,8 @@ POS for.NETのposdm.exeプログラムを使用してデバイスエントリ作
 3.  イベントハンドラを登録
 4. Openメソッドを呼び出す
 
+コード例:
+
 
     ElectronicValueRW evrwObj1 = null;
     PosExplorer explorer = new PosExplorer();

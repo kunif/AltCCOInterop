@@ -104,6 +104,8 @@ Here is a procedure and an example of calling the device entry created in the us
 3. Register event handler
 4. Call Open method
 
+Example code:
+
 
     ElectronicValueRW evrwObj1 = null;
     PosExplorer explorer = new PosExplorer();
