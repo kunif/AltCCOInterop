@@ -52,6 +52,7 @@ CCO Installerの.msiファイルによるインストーラーでは両方とも
 - 適当なフォルダを作成し、 POS.AltCCOInterop.dll をコピー  
   ドライブのルートではなく、かつフォルダのパス名は空白を含まず、0x7E以下の英数字のみで構成してください。  
   その方が問題発生の可能性が少ないでしょう。  
+
 - POS for.NETレジストリのControlAssembliesキーに上記フォルダを値にして任意の名前で登録  
   例えば "AltCCOInterops"="C:\\\\POSforNET\\\\CCOInterop\\\\"  
   ただし、開発作業中はビルド時に処理の一環で自動的に登録されます。  
@@ -65,12 +66,15 @@ POS for.NETのposdm.exeプログラムを使用してデバイスエントリ作
 
 - posdmのADDDEVICEコマンドでデバイスエントリを作成  
   使用例: posdm ADDDEVICE OposEVRW1 /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW"  
+
   - 指定したデバイス名(例では"OposEVRW1")は"HardwarePath"の値として格納されます  
     他のPOS for.NETの名前やOPOSの名前と重ならないユニークな名前を指定してください  
   - /soname:には頭に"OpenPOS "を付けてダブルクォーテーションで囲んだデバイスクラス名を指定してください  
     例えば "OpenPOS CashDrawer", "OpenPOS POSPrinter", "OpenPOS Scanner" 等  
+
 - posdmのADDPROPERTYコマンドで使用するOPOSデバイス名を設定  
   使用例: posdm ADDPROPERTY OposDeviceName VenderName_ModelName /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW" /path:OposEVRW1  
+
   - 設定対象のプロパティ名は "OposDeviceName"  
   - 設定する値(例では"VenderName_ModelName")はOPOSレジストリに存在するデバイスネームキーまたは論理デバイス名を指定してください  
 

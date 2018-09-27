@@ -42,7 +42,7 @@ To develop and execute this program you need:
 - OPOS service object of target device  
 
 To develop/execute this service object, OPOS for .NET Assemblies is required together with Common Control Objects.  
-OPOS for.NET Assemblies is not installed when only the target device's .ocx is installed by the device vendor's OPOS, or installed using the CCO Runtime .zip file, please install it separately.  
+OPOS for .NET Assemblies is not installed when only the target device's .ocx is installed by the device vendor's OPOS, or installed using the CCO Runtime .zip file, please install it separately.  
 Both are installed by the CCO Installer .msi file installer.
 Therefore, i recommend using this.
 
@@ -53,6 +53,7 @@ To install on the execution environment, please follow the procedure below.
 - Create an appropriate folder and copy POS.AltCCOInterop.dll.  
   It is not the root of the drive, and the path name of the folder does not include the blank space and should consist only of alphanumeric characters less equal 0x7E.  
   There is less chance of that person having a problem.  
+
 - Register with the arbitrary name with the above folder as the value in the ControlAssemblies key of the POS for.NET registry.  
   For example "AltCCOInterops"="C:\\\\POSforNET\\\\CCOInterop\\\\"  
   However, during development work, it is automatically registered as part of the processing at build time.  
@@ -65,13 +66,16 @@ To install on the execution environment, please follow the procedure below.
 Create a device entry and set its properties using the posdm.exe program of POS for.NET.
 
 - Create a device entry with the ADDDEVICE command of posdm  
-  Example usage: posdm ADDDEVICE OposEVRW1 /type:ElectronicValueRW /soname: "OpenPOS ElectronicValueRW"  
+  Example usage: posdm ADDDEVICE OposEVRW1 /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW"  
+
   - The specified device name ("OposEVRW1" in the example) is stored as the value of "HardwarePath"  
-    Please specify a unique name that does not overlap the name of other POS for .NET or OPOS name.  
+    Please specify a unique name that does not overlap the name of other POS for.NET or OPOS name.  
   - Please append "OpenPOS " to the head of /soname: and specify the device class name enclosed in double quotes.  
     For example, "OpenPOS CashDrawer", "OpenPOS POSPrinter", "OpenPOS Scanner" etc.  
+
 - Set the OPOS device name to be used with the ADDPROPERTY command of posdm  
   Example usage: posdm ADDPROPERTY OposDeviceName VenderName_ModelName /type:ElectronicValueRW /soname:"OpenPOS ElectronicValueRW" /path:OposEVRW1  
+
   - The property name to be set is "OposDeviceName".  
   - Please specify the device name key or logical device name that exists in the OPOS registry for the value to be set ("VenderName_ModelName" in the example).  
 
@@ -114,12 +118,12 @@ Example code:
     }
     if (evrwObj1 != null)
     {
-        evrwObj1.DataEvent + = evrwObj1_DataEvent;
-        evrwObj1.DirestIOEvent + = evrwObj1_DirectIOEvent;
-        evrwObj1.ErrorEvent + = evrwObj1_ErrorEvent;
-        evrwObj1.OutputCompleteEvent + = evrwObj1_OutputCompleteEvent;
-        evrwObj1.StatusUpdateEvent + = evrwObj1_StatusUpdateEvent;
-        evrwObj1.TransitionEvent + = evrwObj1_TransitionEvent;
+        evrwObj1.DataEvent += evrwObj1_DataEvent;
+        evrwObj1.DirestIOEvent += evrwObj1_DirectIOEvent;
+        evrwObj1.ErrorEvent += evrwObj1_ErrorEvent;
+        evrwObj1.OutputCompleteEvent += evrwObj1_OutputCompleteEvent;
+        evrwObj1.StatusUpdateEvent += evrwObj1_StatusUpdateEvent;
+        evrwObj1.TransitionEvent += evrwObj1_TransitionEvent;
      
         evrwObj1.Open();
     }
