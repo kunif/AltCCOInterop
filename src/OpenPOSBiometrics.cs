@@ -91,20 +91,24 @@ namespace POS.AltCCOInterop
         {
             BiometricsInformationRecord Result = null;
 
-            if (!string.IsNullOrEmpty(value))
+            if ((!string.IsNullOrEmpty(value)) && (value.Length >= 45))
             {
                 byte[] array = InteropCommon.ToByteArrayFromString(value, _binaryConversion);
-                int BDBLength = (array[0] + array[1] * 0x100 + array[2] * 0x10000 + array[3] * 0x1000000) - 45;
-                Version HeaderVersion = new Version((int)array[4], 0);
+                int BDBLength = BitConverter.ToInt32(array, 0) - 45;
+                Version headerVersion = new Version((int)array[4], 0);
                 BirDataTypes bdt = (BirDataTypes)InteropEnum<BirDataTypes>.ToEnumFromInteger((int)array[5]);
-                int FormatIDOwner = (int)array[7] + (int)array[8] * 0x100;
-                int FormatIDType = (int)array[9] + (int)array[10] * 0x100;
-                BirPurpose BIRPurpose = (BirPurpose)InteropEnum<BirPurpose>.ToEnumFromInteger((int)array[12]);
-                int BiometricTypeInteger = array[12] + array[13] * 0x100 + array[14] * 0x10000 + array[15] * 0x1000000;
-                SensorType BiometricType = (SensorType)InteropEnum<SensorType>.ToEnumFromInteger(BiometricTypeInteger);
-                byte[] bdb = new byte[BDBLength];
-                Array.Copy(array, 45, bdb, 0, BDBLength);
-                Result = new BiometricsInformationRecord(HeaderVersion, bdt, FormatIDOwner, FormatIDType, BIRPurpose, BiometricType, bdb);
+                int formatIDOwner = BitConverter.ToUInt16(array, 7);
+                int formatIDType = BitConverter.ToUInt16(array, 9);
+                BirPurpose BIRPurpose = (BirPurpose)InteropEnum<BirPurpose>.ToEnumFromInteger((int)array[11]);
+                int biometricTypeInteger = BitConverter.ToInt32(array, 12);
+                SensorType biometricType = (SensorType)InteropEnum<SensorType>.ToEnumFromInteger(biometricTypeInteger);
+                byte[] bdb = null;
+                if (BDBLength > 0)
+                {
+                    bdb = new byte[BDBLength];
+                    Array.Copy(array, 45, bdb, 0, BDBLength);
+                }
+                Result = new BiometricsInformationRecord(headerVersion, bdt, formatIDOwner, formatIDType, BIRPurpose, biometricType, bdb);
             }
 
             return Result;
@@ -112,49 +116,69 @@ namespace POS.AltCCOInterop
 
         private byte[] ToByteArrayFromBiometricsInformationRecord(BiometricsInformationRecord value)
         {
+            if (value == null) return null;
+
             byte[] Result = null;
 
             try
             {
-                Result = InteropCommon.ToByteArrayFromString(value.ToString(), _binaryConversion);
+                int length = value.BiometricDataBlockSize + 45;
+                Result = new byte[length];
+                Array.Clear(Result, 0, length);
+                byte[] work = BitConverter.GetBytes(length);
+                Array.Copy(work, Result, 4);
+                Result[4] = (byte)value.Version.Major;
+                Result[5] = (byte)(int)value.DataType;
+                work = BitConverter.GetBytes(value.FormatOwner);
+                Result[6] = work[0];
+                Result[7] = work[1];
+                work = BitConverter.GetBytes(value.FormatId);
+                Result[8] = work[0];
+                Result[9] = work[1];
+                Result[11] = (byte)(int)value.Purpose;
+                work = BitConverter.GetBytes((int)value.SensorType);
+                Array.Copy(work, 0, Result, 12, 4);
+                if (value.BiometricDataBlockSize > 0)
+                {
+                    Array.Copy(value.GetBiometricDataBlock(), 0, Result, 45, value.BiometricDataBlockSize);
+                }
             }
             catch
             {
-                ;
+                Result = null;
             }
 
             return Result;
         }
 
-        private string[] ToStringArrayFromBiometricsInformationRecord(IEnumerable<BiometricsInformationRecord> birPopulation)
+        private string[] ToStringArrayFromBiometricsInformationRecords(IEnumerable<BiometricsInformationRecord> birPopulation)
         {
+            if (birPopulation == null) return null;
+
             string[] Result = null;
 
-            if (birPopulation != null)
+            try
             {
-                try
+                List<string> BIRStringList = new List<string>();
+
+                foreach (BiometricsInformationRecord BIR in birPopulation)
                 {
-                    List<string> BIRStringList = new List<string>();
+                    string BIRString = InteropCommon.ToStringFromByteArray(ToByteArrayFromBiometricsInformationRecord(BIR), _binaryConversion);
 
-                    foreach (BiometricsInformationRecord BIR in birPopulation)
+                    if (!string.IsNullOrEmpty(BIRString))
                     {
-                        string BIRString = InteropCommon.ToStringFromByteArray(ToByteArrayFromBiometricsInformationRecord(BIR), _binaryConversion);
-
-                        if (!string.IsNullOrEmpty(BIRString))
-                        {
-                            BIRStringList.Add(BIRString);
-                        }
-                    }
-
-                    if (BIRStringList.Count > 0)
-                    {
-                        Result = BIRStringList.ToArray();
+                        BIRStringList.Add(BIRString);
                     }
                 }
-                catch
+
+                if (BIRStringList.Count > 0)
                 {
-                    Result = null;
+                    Result = BIRStringList.ToArray();
                 }
+            }
+            catch
+            {
+                ;
             }
 
             return Result;
@@ -756,7 +780,7 @@ namespace POS.AltCCOInterop
 
         public override int[] Identify(int maximumFalseAcceptRateRequested, int maximumFalseRejectRateRequested, bool falseAcceptRatePrecedence, IEnumerable<BiometricsInformationRecord> referenceBirPopulation, int timeout)
         {
-            string[] ReferenceBIRPopulation = ToStringArrayFromBiometricsInformationRecord(referenceBirPopulation);
+            string[] ReferenceBIRPopulation = ToStringArrayFromBiometricsInformationRecords(referenceBirPopulation);
             int[] CandidateRanking = new int[1] { 0 };
             VerifyResult(_cco.Identify(maximumFalseAcceptRateRequested, maximumFalseRejectRateRequested, falseAcceptRatePrecedence, ReferenceBIRPopulation, CandidateRanking, timeout));
             return CandidateRanking;
@@ -764,7 +788,7 @@ namespace POS.AltCCOInterop
 
         public override int[] IdentifyMatch(int maximumFalseAcceptRateRequested, int maximumFalseRejectRateRequested, bool falseAcceptRatePrecedence, BiometricsInformationRecord sampleBir, IEnumerable<BiometricsInformationRecord> referenceBirPopulation)
         {
-            string[] ReferenceBIRPopulation = ToStringArrayFromBiometricsInformationRecord(referenceBirPopulation);
+            string[] ReferenceBIRPopulation = ToStringArrayFromBiometricsInformationRecords(referenceBirPopulation);
             int[] CandidateRanking = new int[1] { 0 };
             VerifyResult(_cco.IdentifyMatch(maximumFalseAcceptRateRequested, maximumFalseRejectRateRequested, falseAcceptRatePrecedence, InteropCommon.ToStringFromByteArray(ToByteArrayFromBiometricsInformationRecord(sampleBir), _binaryConversion), ReferenceBIRPopulation, CandidateRanking));
             return CandidateRanking;

@@ -710,7 +710,7 @@ namespace POS.AltCCOInterop
 
         #region OPOSPINPad  Specific Methodss
 
-        private static Dictionary<Enum, string> P4dN2PpadSystem = new Dictionary<Enum, string>()
+        private static Dictionary<Enum, string> s_P4dN2PpadSystem = new Dictionary<Enum, string>()
         {
             { PinPadSystem.Apacs40, "APACS40" },
             { PinPadSystem.AS2805, "AS2805" },
@@ -721,7 +721,7 @@ namespace POS.AltCCOInterop
 
         public override void BeginEftTransaction(PinPadSystem pinpadSystem, int transactionHost)
         {
-            string sValue = P4dN2PpadSystem[pinpadSystem];
+            string sValue = s_P4dN2PpadSystem[pinpadSystem];
             VerifyResult(_cco.BeginEFTTransaction(sValue, transactionHost));
         }
 

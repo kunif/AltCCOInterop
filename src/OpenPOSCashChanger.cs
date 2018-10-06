@@ -617,12 +617,8 @@ namespace POS.AltCCOInterop
         {
             get
             {
-                int iValue = _cco.ServiceIndex;
-                int indexOfCoinAcceptor = iValue & 0xFF;
-                int indexOfCoinDispenser = (iValue >> 8) & 0xFF;
-                int indexOfBillAcceptor = (iValue >> 16) & 0xFF;
-                int indexOfBillDispenser = (iValue >> 24) & 0xFF;
-                return new ServiceIndex(indexOfCoinAcceptor, indexOfCoinDispenser, indexOfBillAcceptor, indexOfBillDispenser);
+                byte[] value = BitConverter.GetBytes(_cco.ServiceIndex);
+                return new ServiceIndex(value[0], value[1], value[2], value[3]);
             }
         }
 

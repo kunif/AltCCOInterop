@@ -679,14 +679,14 @@ namespace POS.AltCCOInterop
         {
             get
             {
-                int iState1 = _cco.ReadState1;
-                int iState2 = _cco.ReadState2;
-                PointCardReadWriteState eTrack1 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger((iState1 & 0xFF));
-                PointCardReadWriteState eTrack2 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(((iState1 & 0xFF00) / 0x100));
-                PointCardReadWriteState eTrack3 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(((iState1 & 0xFF0000) / 0x10000));
-                PointCardReadWriteState eTrack4 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger((int)(((uint)iState1 & 0xFF000000) / 0x1000000));
-                PointCardReadWriteState eTrack5 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger((iState2 & 0xFF));
-                PointCardReadWriteState eTrack6 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(((iState2 & 0xFF00)));
+                byte[] state1 = BitConverter.GetBytes(_cco.ReadState1);
+                byte[] state2 = BitConverter.GetBytes(_cco.ReadState2);
+                PointCardReadWriteState eTrack1 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state1[0]);
+                PointCardReadWriteState eTrack2 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state1[1]);
+                PointCardReadWriteState eTrack3 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state1[2]);
+                PointCardReadWriteState eTrack4 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state1[3]);
+                PointCardReadWriteState eTrack5 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state2[0]);
+                PointCardReadWriteState eTrack6 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state2[1]);
                 return new PointCardReadWriteStates(eTrack1, eTrack2, eTrack3, eTrack4, eTrack5, eTrack6);
             }
         }
@@ -695,15 +695,9 @@ namespace POS.AltCCOInterop
         {
             get
             {
-                int iLength1 = _cco.RecvLength1;
-                int iLength2 = _cco.RecvLength2;
-                int iTrack1 = iLength1 & 0xFF;
-                int iTrack2 = (iLength1 & 0xFF00) / 0x100;
-                int iTrack3 = (iLength1 & 0xFF0000) / 0x10000;
-                int iTrack4 = (int)(((uint)iLength1 & 0xFF000000) / 0x1000000);
-                int iTrack5 = iLength2 & 0xFF;
-                int iTrack6 = (iLength2 & 0xFF00) / 0x100;
-                return new PointCardReceiveLengths(iTrack1, iTrack2, iTrack3, iTrack4, iTrack5, iTrack6);
+                byte[] length1 = BitConverter.GetBytes(_cco.RecvLength1);
+                byte[] length2 = BitConverter.GetBytes(_cco.RecvLength2);
+                return new PointCardReceiveLengths(length1[0], length1[1], length1[2], length1[3], length2[0], length2[1]);
             }
         }
 
@@ -777,14 +771,14 @@ namespace POS.AltCCOInterop
         {
             get
             {
-                int iState1 = _cco.WriteState1;
-                int iState2 = _cco.WriteState2;
-                PointCardReadWriteState eTrack1 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger((iState1 & 0xFF));
-                PointCardReadWriteState eTrack2 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(((iState1 & 0xFF00) / 0x100));
-                PointCardReadWriteState eTrack3 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(((iState1 & 0xFF0000) / 0x10000));
-                PointCardReadWriteState eTrack4 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger((int)(((uint)iState1 & 0xFF000000) / 0x1000000));
-                PointCardReadWriteState eTrack5 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger((iState2 & 0xFF));
-                PointCardReadWriteState eTrack6 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(((iState2 & 0xFF00)));
+                byte[] state1 = BitConverter.GetBytes(_cco.WriteState1);
+                byte[] state2 = BitConverter.GetBytes(_cco.WriteState2);
+                PointCardReadWriteState eTrack1 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state1[0]);
+                PointCardReadWriteState eTrack2 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state1[1]);
+                PointCardReadWriteState eTrack3 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state1[2]);
+                PointCardReadWriteState eTrack4 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state1[3]);
+                PointCardReadWriteState eTrack5 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state2[0]);
+                PointCardReadWriteState eTrack6 = (PointCardReadWriteState)InteropEnum<PointCardReadWriteState>.ToEnumFromInteger(state2[1]);
                 return new PointCardReadWriteStates(eTrack1, eTrack2, eTrack3, eTrack4, eTrack5, eTrack6);
             }
         }

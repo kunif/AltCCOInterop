@@ -144,6 +144,22 @@ Currently known issues are as follows.
   - FrameData property of ImageScanner device  
 - There are no functions such as acquisition of operation record and information acquisition for troubleshooting.  
 
+## Issues of POS for.NET  
+
+The following issues were found in POS for.NET during the development process.  
+
+- Information is insufficient in Biometrics' BIR defined in POS for.NET.  
+  It does not contain the following information in the BIR diagram described in the UnifiedPOS specification.  
+  - Quality  
+  - Product ID (Owner, Type)  
+  - Subtype  
+  - Index Flag  
+  - Index (UUID)  
+  - Digital Signature  
+- Also at BIR, whether it is a issue or not is not clear, but the situation is as follows.  
+  - The Creation Date/Creation Time is the date and time when the BIR object was created in the POS for.NET service object, not the date and time the device read the information.  
+    Although it may not be a problem with POS for.NET's own service object, information is rewritten in the case of processing relayed to/from OPOS.  
+
 ## Customize
 
 If you want to customize for specific user/vendor specific processing etc, please do it freely.  

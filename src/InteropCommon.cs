@@ -23,12 +23,14 @@ namespace POS.AltCCOInterop
         {
             string Result = "";
 
-            foreach (Statistic stc in statisticsArray)
+            if ((statisticsArray != null) && (statisticsArray.Length > 0))
             {
-                Result += stc.Name + "=" + stc.Value + ",";
+                foreach (Statistic stc in statisticsArray)
+                {
+                    Result += stc.Name + "=" + stc.Value + ",";
+                }
+                Result = Result.TrimEnd(',');
             }
-
-            Result = Result.TrimEnd(',');
             return Convert.ToString(Result);
         }
 
@@ -63,6 +65,9 @@ namespace POS.AltCCOInterop
 
         internal static string ToStringFromByteArray(byte[] value, int binaryConversion)
         {
+            if (value == null) return null;
+            if (value.Length <= 0) return String.Empty;
+
             StringBuilder Result = new StringBuilder(value.Length);
 
             switch (binaryConversion)
@@ -102,9 +107,12 @@ namespace POS.AltCCOInterop
 
         internal static byte[] ToByteArrayFromString(string value, int binaryConversion)
         {
+            if (value == null) return null;
+
             byte[] Result = null;
             int ResultLength = value.Length;
             int Index = 0;
+            if (value.Length <= 0) return Result;
 
             switch (binaryConversion)
             {
@@ -258,6 +266,8 @@ namespace POS.AltCCOInterop
 
         internal static string ToCashCountsString(IEnumerable<CashCount> cashCountsArray)
         {
+            if (cashCountsArray == null) return String.Empty;
+
             string Result = "";
 
             foreach (CashCount cc in cashCountsArray)

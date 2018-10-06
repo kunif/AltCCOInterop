@@ -141,6 +141,22 @@ DeviceCollection/DeviceInfoにリストされた状態では"CompatibilityLevel1
   - ImageScannerデバイスのFrameDataプロパティ  
 - 動作記録採取や障害調査用情報取得などの機能がありません。  
 
+## POS for.NETの課題  
+
+開発過程でPOS for.NETに以下の課題が判明しました。  
+
+- POS for.NETで定義されているBiometricsのBIRに情報が不足している。  
+  UnifiedPOS仕様書に記述されているBIR図の以下の情報が入っていない。  
+  - Quality  
+  - Product ID (Owner, Type)  
+  - Subtype  
+  - Index Flag  
+  - Index(UUID)  
+  - Digital Signature  
+- 同じくBIRで、課題かどうかは不明だが、以下の状況になっている。  
+  - Creation Date/Creation Timeが、装置が情報を読み取った日時ではなく、POS for.NETサービスオブジェクトの中でBIRオブジェクトを作成した際の日時になっている。  
+    POS for.NET自身のサービスオブジェクトでは問題無いかもしれないが、OPOSに中継する処理の場合は情報が書き換わってしまう。
+
 ## カスタマイズ
 
 もし特定ユーザー/ベンダー固有の処理等のためのカスタマイズを加えたい場合、それは自由に行ってください。  
