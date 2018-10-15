@@ -139,13 +139,14 @@ namespace POS.AltCCOInterop
         {
             get
             {
-                return (BinaryConversion)InteropEnum<BinaryConversion>.ToEnumFromInteger(_cco.BinaryConversion);
+                _binaryConversion = _cco.BinaryConversion;
+                return (BinaryConversion)InteropEnum<BinaryConversion>.ToEnumFromInteger(_binaryConversion);
             }
             set
             {
                 _cco.BinaryConversion = (int)value;
-                VerifyResult(_cco.ResultCode);
                 _binaryConversion = _cco.BinaryConversion;
+                VerifyResult(_cco.ResultCode);
             }
         }
 

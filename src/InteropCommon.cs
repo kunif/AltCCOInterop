@@ -72,6 +72,8 @@ namespace POS.AltCCOInterop
 
             switch (binaryConversion)
             {
+                default: // Invalid value assumes to be None 
+
                 case 0: // None
                     foreach (byte b in value)
                     {
@@ -116,6 +118,8 @@ namespace POS.AltCCOInterop
 
             switch (binaryConversion)
             {
+                default: // Invalid value assumes to be None
+
                 case 0: // None
                     Result = new byte[ResultLength];
 
@@ -146,10 +150,6 @@ namespace POS.AltCCOInterop
                         Result[i] = (byte)(int.Parse(value.Substring((i * 3), 3)));
                     }
 
-                    break;
-
-                default:
-                    Result = new byte[0];
                     break;
             }
 
