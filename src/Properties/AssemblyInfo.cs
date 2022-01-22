@@ -14,7 +14,7 @@ using Microsoft.PointOfService;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("POS.AltCCOInterop")]
-[assembly: AssemblyCopyright("Copyright © 2018 Kunio Fukuchi All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright © 2018-2022 Kunio Fukuchi All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

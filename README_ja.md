@@ -2,6 +2,15 @@
 
 これはOPOSコントロールをPOS for.NETから呼び出すためのPOS for.NETのサービスオブジェクトです。  
 
+- 2022-01-22 BugFix:以下のデバイスで未実装のプロパティ/メソッドがあった。
+  - CashChanger
+  - CheckScanner
+  - FiscalPrinter
+  - POSPower
+  - POSPrinter
+  - Scale
+- Visual Studio 2022と.NET Framework 4.8に移行した。
+
 POS for.NETには 既にLegacy COM Interopと呼ばれる、OPOSコントロールを呼び出す仕組みがPOS for.NET内部に組み込まれています。  
 しかしこの仕組みには以下の課題があります。
 
@@ -34,8 +43,8 @@ POS for.NETには 既にLegacy COM Interopと呼ばれる、OPOSコントロー�
 
 このプログラムの開発および実行には以下が必要です。
 
-- Visual Studio 2017またはVisual Studio Community 2017 version 15.8.5 (開発のみ)  
-- .NET framework 3.5および4.0以降  
+- Visual Studio 2022またはVisual Studio Community 2022 version 17.0.5 (開発のみ)  
+- .NET framework 4.8  
 - Microsoft Point of Service for .NET v1.14.1 (POS for.NET) : https://www.microsoft.com/en-us/download/details.aspx?id=55758  
 - Common Control Objects 1.14.001 : http://monroecs.com/oposccos_current.htm  
 - OPOS for .NET Assemblies 1.14.001 : http://monroecs.com/posfordotnet/opos_dotnet.htm  

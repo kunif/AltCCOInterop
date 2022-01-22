@@ -513,6 +513,11 @@ namespace POS.AltCCOInterop
             get { return _cco.CapSpecialTare; }
         }
 
+        public override bool CapStatusUpdate
+        {
+            get { return _cco.CapStatusUpdate; }
+        }
+
         public override bool CapTarePriority
         {
             get { return _cco.CapTarePriority; }
@@ -549,6 +554,24 @@ namespace POS.AltCCOInterop
         public override decimal SalesPrice
         {
             get { return _cco.SalesPrice; }
+        }
+
+        public override decimal ScaleLiveWeight
+        {
+            get { return _cco.ScaleLiveWeight; }
+        }
+
+        public override StatusNotify StatusNotify
+        {
+            get
+            {
+                return (StatusNotify)InteropEnum<StatusNotify>.ToEnumFromInteger(_cco.StatusNotify);
+            }
+            set
+            {
+                _cco.StatusNotify = (int)value;
+                VerifyResult(_cco.ResultCode);
+            }
         }
 
         public override decimal TareWeight

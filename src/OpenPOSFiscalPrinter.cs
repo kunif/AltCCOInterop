@@ -1258,6 +1258,16 @@ namespace POS.AltCCOInterop
             VerifyResult(_cco.PrintRecItemFuelVoid(description, price, vatInfo, specialTax));
         }
 
+        public override void PrintRecItemRefund(string description, decimal amount, int quantity, int vatInfo, decimal unitAmount, string unitName)
+        {
+            VerifyResult(_cco.PrintRecItemRefund(description, amount, quantity, vatInfo, unitAmount, unitName));
+        }
+
+        public override void PrintRecItemRefundVoid(string description, decimal amount, int quantity, int vatInfo, decimal unitAmount, string unitName)
+        {
+            VerifyResult(_cco.PrintRecItemRefundVoid(description, amount, quantity, vatInfo, unitAmount, unitName));
+        }
+
         public override void PrintRecItemVoid(string description, decimal price, int quantity, int vatInfo, decimal unitPrice, string unitName)
         {
             VerifyResult(_cco.PrintRecItemVoid(description, price, quantity, vatInfo, unitPrice, unitName));

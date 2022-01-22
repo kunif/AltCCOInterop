@@ -482,6 +482,11 @@ namespace POS.AltCCOInterop
             get { return _cco.CapFullSensor; }
         }
 
+        public override bool CapJamSensor
+        {
+            get { return _cco.CapJamSensor; }
+        }
+
         public override bool CapNearEmptySensor
         {
             get { return _cco.CapNearEmptySensor; }
@@ -500,6 +505,11 @@ namespace POS.AltCCOInterop
         public override bool CapRepayDeposit
         {
             get { return _cco.CapRepayDeposit; }
+        }
+
+        public override bool CapRealTimeData
+        {
+            get { return _cco.CapRealTimeData; }
         }
 
         public override CashUnits CurrencyCashList

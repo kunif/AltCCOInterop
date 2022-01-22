@@ -471,6 +471,11 @@ namespace POS.AltCCOInterop
 
         #region OPOSCheckScanner  Specific Properties
 
+        public override bool CapAutoContrast
+        {
+            get { return _cco.CapAutoContrast; }
+        }
+
         public override bool CapAutoGenerateFileId
         {
             get { return _cco.CapAutoGenerateFileID; }
@@ -494,6 +499,11 @@ namespace POS.AltCCOInterop
         public override bool CapConcurrentMicr
         {
             get { return _cco.CapConcurrentMICR; }
+        }
+
+        public override bool CapContrast
+        {
+            get { return _cco.CapContrast; }
         }
 
         public override bool CapDefineCropArea
@@ -580,6 +590,19 @@ namespace POS.AltCCOInterop
             set
             {
                 _cco.ConcurrentMICR = value;
+                VerifyResult(_cco.ResultCode);
+            }
+        }
+
+        public override int Contrast
+        {
+            get
+            {
+                return _cco.Contrast;
+            }
+            set
+            {
+                _cco.Contrast = value;
                 VerifyResult(_cco.ResultCode);
             }
         }
